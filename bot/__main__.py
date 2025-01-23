@@ -28,7 +28,7 @@ async def main():
 
     # Check that bot can run properly
     try:
-        await check_bot_rights_main_group(bot, bot_config.main_group_id)
+        await check_bot_rights_main_group(bot, bot_config)
     except (TelegramAPIError, PermissionError) as ex:
         await logger.aerror(f"Cannot use bot in main group, because {ex.__class__.__name__}: {str(ex)}")
         await bot.session.close()
@@ -43,9 +43,9 @@ async def main():
 
     l10n = get_fluent_localization()
 
-    await set_bot_commands(bot, bot_config.main_group_id, l10n)
+    await set_bot_commands(bot, l10n)
 
-    main_group_admins: dict = await fetch_admins(bot, bot_config.main_group_id)
+    main_group_admins = await fetch_admins(bot, bot_config.main_group_id)
 
     dp = Dispatcher(
         admins=main_group_admins,
