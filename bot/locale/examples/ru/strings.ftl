@@ -62,6 +62,3 @@ readonly-temporary =
 
 channels-not-allowed =
     В этой группе запрещено отправлять сообщения от имени канала. Сам канал забанен.
-
-bot-command-description =
-    Сообщить о нарушении

@@ -3,7 +3,6 @@ from aiogram.types import (
     ChatMemberAdministrator, ChatMemberOwner, ChatMemberBanned, ChatMemberLeft, ChatMemberRestricted,
     BotCommand, BotCommandScopeAllGroupChats
 )
-from fluent.runtime import FluentLocalization
 
 from bot.config_reader import BotConfig
 
@@ -54,8 +53,8 @@ async def fetch_admins(
     return result
 
 
-async def set_bot_commands(bot: Bot, l10n: FluentLocalization):
+async def set_bot_commands(bot: Bot):
     commands = [
-        BotCommand(command="report", description=l10n.format_value("bot-command-description")),
+        BotCommand(command="report", description="Report message to group admins"),
     ]
     await bot.set_my_commands(commands, scope=BotCommandScopeAllGroupChats())
